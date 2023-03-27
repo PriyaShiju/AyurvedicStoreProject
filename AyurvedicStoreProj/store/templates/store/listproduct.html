@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+ {% block title %} List Products  {% endblock %}</title>
+     
+{% block content %} 
+
+    {% if messages %}
+        <ul class="messages"> 
+            {%for msg in messages%}
+            <li> <div class="alert alert-error" role="alert">{{msg.message}}</div> </li>
+            {%endfor%}
+        </ul>
+    {% endif %}
+
+    <h1>List Products </h1>
+    <h3> Welcome {{ request.session.customer }} ! <br> You have visited the website {{request.COOKIES.visits|default:"1"}} times.</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>
+                Item
+            </th></tr>
+        </thead>
+        <tbody>{% for item in items%}
+            <tr><td>
+                {{item}}
+            </td></tr>{% endfor%}
+        </tbody>
+    </table>
+
+    {% endblock %}
+    
