@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from store import views
+#from store.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", views.index, name="index"), # http://127.0.0.1:8000
     path('Ayurstores/', include('store.urls'))  # http://127.0.0.1:8000/Ayurstores/
 ]

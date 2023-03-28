@@ -9,11 +9,40 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.contrib import messages
+from django.utils.translation import gettext
+from store.models import feedback
+import random
+import string
 
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Welcome to Ayurvedic Store in Australia")
+def randomString(stringLength=8):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
+def index(request):    
+    #return HttpResponse("Welcome to Ayurvedic Store in Australia")
+    return render(request, "store/index.html" )
+
+def customerfeedback(request):
+    if request.method == "POST":
+        username = request.POST.get("usrname")
+        body = request.POST.get("body")
+        new_feedback = feedback(submitter = username, body =body)
+        #new_feedback = feedback(submitter=randomString(), body="Could not find the product Thailam. Please help me!")
+        new_feedback.save()
+        return HttpResponse("Successfully submitted teh feedback")
+    return render(request, "store/CustomerTickets.html" )
+
+def feedbacks(request):
+    all_tickets = feedback.objects.all()    
+    return render(request, "store/Feedbacks.html" , {"items": all_tickets})
+
+
+def viewfeedback(request,feedback_id):
+    feedbk = feedback.objects.get(pk=feedback_id)    
+    return render(request, "store/ViewFeedback.html" , {"item": feedbk})
+
 
 def productdetail(request):
     return HttpResponse("Ayurvedic Product Details and Benefits")
@@ -33,7 +62,8 @@ def relatedproducts(request):
             items = paginator.page(1)
         
         #session management
-        messages.info(request,"Successfully fetched")
+               
+        messages.info(request,gettext("Successfully fetched"))
         if not request.session.has_key('customer'):
             request.session['customer'] = 'Priya'
             print("Session value : " + request.session['customer'])

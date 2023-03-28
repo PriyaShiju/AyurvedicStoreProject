@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+ {% block title %}  Feedbacks {% endblock %}
+     
+{% block content %} 
+ 
+<h1> Feedbacks </h1><ul>
+{%for item in items%}
+    {% autoescape off %}
+        
+    <a href="{% url 'feedbackurl' item.pk %}">
+    {%if not item.submitter == "Robot" %} 
+
+        <li>  {{item.body | escape}} is submitted by {{item.submitter | escape}} on {{item.createdon}} </li>
+    {%else%}
+        <li> {{item.body | safe}} is submitted by {{item.submitter}} on {{item.createdon}} </li>
+
+    {% endif%}
+    </a>
+    {% endautoescape %}
+{%endfor%}
+</ul>
+{% endblock %}

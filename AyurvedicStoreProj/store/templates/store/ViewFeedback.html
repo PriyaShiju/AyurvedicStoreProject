@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+ {% block title %}  Feedback  {% endblock %}
+     
+{% block content %} 
+ 
+<h1> Feedback Details</h1>
+    
+        {% autoescape off %}
+            
+        
+        {%if not item.submitter == "Robot" %} 
+    
+             <h3>{{item.body | escape}}</h3> <br/>submitted by {{item.submitter | escape}} on {{item.createdon}} 
+        {%else%}
+            <h3> {{item.body | safe}} </h3> <br/> submitted by {{item.submitter}} on {{item.createdon}} 
+    
+        {% endif%}
+        {% endautoescape %}
+
+{% endblock %}
