@@ -20,6 +20,10 @@ def randomString(stringLength=8):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
+def homepage_raw(request):
+    all_tickets = list(feedback.objects.values())
+    return JsonResponse(all_tickets,safe=False)
+
 def index(request):    
     #return HttpResponse("Welcome to Ayurvedic Store in Australia")
     return render(request, "store/index.html" )

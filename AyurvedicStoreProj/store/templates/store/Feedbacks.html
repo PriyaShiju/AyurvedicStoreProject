@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load mytags %}
  {% block title %}  Feedbacks {% endblock %}
      
 {% block content %} 
@@ -7,15 +7,19 @@
 <h2> Feedbacks </h2><ul>
 {%for item in items%}
     {% autoescape off %}
-        
-    
+    {% comment "todo" %} 
+    <pre>{% debug%}</pre>
+    {% endcomment %}    
     {%if not item.submitter == "Robot" %} 
-
-        <li> Submitter : {{item.submitter | escape}} on {{item.createdon}} <br/>
+        <!--  display date as Tuesday, 05 May, 2022,  time:"I:M p" 
+        on {{item.createdon | date:"l, d M, Y"}} 
+        -->
+        <li> Submitter : <strong> {{item.submitter | escape}} </strong> 
+            at  <strong> {{item.createdon | mydate:True}} </strong> <br/>
             Body: {{item.body | escape}} 
         </li>
     {%else%}
-    <li> Submitter : {{item.submitter | safe}} on {{item.createdon}} <br/>
+    <li> Submitter : <strong> {{item.submitter | safe}} on {{item.createdon}} </strong> <br/>
         Body: {{item.body | escape}} 
     </li>
 

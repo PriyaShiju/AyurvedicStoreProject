@@ -1,4 +1,4 @@
-body{
+html,body{
     font-family:sans-serif;
     color:darkslategrey;
     background-color:burlywood;
@@ -7,3 +7,14 @@ body{
 .content{
     color: green;
 }
+
+.nav-text{
+    position: fixed;
+    top :0;
+    left:0;
+    width:100vw;
+    background-color: black;
+    color:white;
+    display:flex;
+}
+
