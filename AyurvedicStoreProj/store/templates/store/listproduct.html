@@ -12,8 +12,9 @@
         </ul>
     {% endif %}
 
-    <h1>List Products </h1>
-    <h3> Welcome {{ request.session.customer }} ! <br> You have visited the website {{request.COOKIES.visits|default:"1"}} times.</h3>
+    <h3>List Products </h3><br/> <br/>
+    <h3> Welcome {{ request.session.customer }} ! You have visited the website {{request.COOKIES.visits|default:"1"}} times.</h3>
+    <div class="content">
     <table class="table table-bordered">
         <thead>
             <tr><th>
@@ -26,5 +27,5 @@
             </td></tr>{% endfor%}
         </tbody>
     </table>
-
+</div>
     {% endblock %}

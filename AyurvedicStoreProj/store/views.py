@@ -63,7 +63,7 @@ def relatedproducts(request):
         
         #session management
                
-        messages.info(request,gettext("Successfully fetched"))
+        #messages.info(request,gettext("Successfully fetched"))
         if not request.session.has_key('customer'):
             request.session['customer'] = 'Priya'
             print("Session value : " + request.session['customer'])

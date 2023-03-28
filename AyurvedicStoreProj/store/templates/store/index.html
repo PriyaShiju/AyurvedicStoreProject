@@ -1,10 +1,21 @@
 {% extends "base.html" %}
-
- {% block title %} Customer Feedback  {% endblock %}
+{% load static %}
+{% block title %} Customer Feedback  {% endblock %}
      
 {% block content %} 
- 
+ <div style="width:100%;height:100%;">
 <h1> Welcome to Ayurvedic Store in Australia! </h1>
+<div style="width:700px;height:500px;">
+<img src="{% static 'store/ayur.jpg' %}"  style="width:100%;height:100%"> 
+</div>
+<br/>
+<br/>
+<div class="content">
+Nowadays its very hard to find the food without preservatives, artifical colors and flavours or gluten, etc, 
+which causes lots of health issues in our older age. We thought to help our senior Australians especially by providing 
+organic and ayurvedic medicinal products which is exported from India. You can search the medicine by the symptoms or disease or with the product name in our website.
+If you require more information about the benefits of the product, you can directly contact us at ayuraussie@gmail.com.au 
 
-
+</div>
+</div>
 {% endblock %}
